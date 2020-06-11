@@ -32,9 +32,19 @@ colors:
     cyan:    '#86c1b9'
     white:   '#f8f8f8'
 # Opacity
-background_opacity: 0.85
+background_opacity: 0.9
 
 window:
   decorations: none
+
+
+scrolling:
+  # How many lines of scrollback to keep,
+  # '0' will disable scrolling.
+  history: 10000
+
+  # Number of lines the viewport will move for every line
+  # scrolled when scrollback is enabled (history > 0).
+  multiplier: 3
 
 
