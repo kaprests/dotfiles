@@ -8,5 +8,3 @@ set shiftwidth=4
 set expandtab
 set hlsearch " highlight search matches "
 set wildmenu " command suggestion upon tab "
-
-
