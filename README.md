@@ -1,7 +1,7 @@
 # dotfiles
 My dotfiles
 
-## Installation (yet to be tested :P)
+## Installation 
 * clone as a bare repo:
 
     `git clone --bare https://github.com/kaprests/dotfiles.git $HOME/.dotfiles`
