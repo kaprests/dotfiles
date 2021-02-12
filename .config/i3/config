@@ -196,3 +196,9 @@ bindsym $mod+Escape exec i3lock -i Pictures/Wallpapers/bigsur.png
 
 # Polybar launch script
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Picom
+exec --no-startup-id picom
+
+# wallpaper
+exec --no-startup-id feh --bg-scale Pictures/Wallpapers/bigsur.jpg
