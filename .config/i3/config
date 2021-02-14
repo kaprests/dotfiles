@@ -202,3 +202,7 @@ exec --no-startup-id picom
 
 # wallpaper
 exec --no-startup-id feh --bg-scale Pictures/Wallpapers/bigsur.jpg
+
+#xrandr --output eDP1 --off
+
+exec --no-startup-id ~/bin/natural_scrolling
