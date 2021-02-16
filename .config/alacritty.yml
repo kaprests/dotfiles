@@ -48,4 +48,4 @@ scrolling:
   multiplier: 3
 
 env:
-  WINIT_X11_SCALE_FACTOR: '1.4'
+  WINIT_X11_SCALE_FACTOR: '1.0'
