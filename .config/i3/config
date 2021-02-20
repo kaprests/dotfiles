@@ -219,6 +219,9 @@ exec_always --no-startup-id /usr/bin/setxkbmap -option "ctrl:swapcaps"
 # Move workspace between monitors
 bindsym $mod+Ctrl+l move workspace to output right
 bindsym $mod+Ctrl+h move workspace to output left
+# backlight
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # xrandr
 #bindsym $mod+Ctrl+s xrandr --output eDP1 --auto --output DP1 --auto --output DP1 --right-of eDP1 --output DP1 --primary
