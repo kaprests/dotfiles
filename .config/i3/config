@@ -4,7 +4,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -28,8 +27,8 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -te -i Pictures/Wallpapers/plasma.png --nofork
-exec --no-startup-id xss-lock --transfer-sleep-lock --  multilockscreen --lock blur
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -te -i Pictures/Wallpapers/brenibba.png --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock --  multilockscreen --lock #blur
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -149,6 +148,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -176,9 +176,9 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
+# i3bar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
@@ -195,38 +195,46 @@ bindsym $mod+r mode "resize"
 # Needed for i3-gaps
 # hide_edge_borders both
 for_window [class="^.*"] border pixel 0
-gaps inner 10
+gaps inner 15
 gaps outer 5
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
 
 # i3 lock
-#bindsym $mod+Escape exec --no-startup-id i3lock -te -i Pictures/Wallpapers/plasma.png
-bindsym $mod+Escape exec --no-startup-id multilockscreen --lock blur
-# suspend
+#bindsym $mod+Escape exec --no-startup-id i3lock -i Pictures/Wallpapers/brenibba.jpg
+
+# multilock
+bindsym $mod+Escape exec --no-startup-id multilockscreen --lock #blur
+
+### suspend ###
 bindsym $mod+Shift+Escape exec --no-startup-id systemctl suspend
+
 # Polybar launch script
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # Picom
-exec --no-startup-id picom
+exec_always --no-startup-id picom
+
 # wallpaper
-exec --no-startup-id feh --bg-scale Pictures/Wallpapers/plasma.png
+exec --no-startup-id feh --bg-scale Pictures/Wallpapers/brenibba.png
+
 # natural scrolling
-exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
+#exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
+
 # Switch keyboard layout (lang)
 exec_always --no-startup-id setxkbmap -layout us,no
 bindsym $mod+p exec --no-startup-id xkblayout-state set +1
+
 # Swap ctrl and caps
 exec_always --no-startup-id /usr/bin/setxkbmap -option "ctrl:swapcaps"
+
 # Move workspace between monitors
 bindsym $mod+Ctrl+l move workspace to output right
 bindsym $mod+Ctrl+h move workspace to output left
+
 # backlight
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
-# deadd-notification-center
-exec_always --no-startup-id exec deadd-notification-center
-bindsym $mod+n exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5 # decrease screen brightness
 
 # xrandr
 #bindsym $mod+Ctrl+s xrandr --output eDP1 --auto --output DP1 --auto --output DP1 --right-of eDP1 --output DP1 --primary

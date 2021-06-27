@@ -8,3 +8,8 @@ set shiftwidth=4
 set expandtab
 set hlsearch " highlight search matches "
 set wildmenu " command suggestion upon tab "
+
+" Plugins List
+call plug#begin(stdpath('data') . '/plugged')
+    Plug 'lervag/vimtex'
+call plug#end()
