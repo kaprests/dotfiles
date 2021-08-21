@@ -224,8 +224,7 @@ exec_always --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id picom
 
 # wallpaper
-exec --no-startup-id feh --bg-scale Pictures/Wallpapers/hurrungane-wallpaper.jpg
-
+exec --no-startup-id feh --bg-scale Pictures/Wallpapers/blue-minimalist-deer-and-mountain-2mpm3oxulby8w23a.jpg
 # natural scrolling
 #exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
 
@@ -246,6 +245,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease
 
 bindsym $mod+n exec --no-startup-id xbacklight -inc 1 # increase screen brightness
 bindsym $mod+m exec --no-startup-id xbacklight -dec 1 # decrease screen brightness
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 
 # xrandr
 #bindsym $mod+Ctrl+s xrandr --output eDP1 --auto --output DP1 --auto --output DP1 --right-of eDP1 --output DP1 --primary
