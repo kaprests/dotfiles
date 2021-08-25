@@ -199,11 +199,15 @@ bindsym $mod+r mode "resize"
 
 # Needed for i3-gaps
 # hide_edge_borders both
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 gaps inner 15
-gaps outer 5
+gaps outer 0
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 
 # i3 lock
 #bindsym $mod+Escape exec --no-startup-id i3lock -i Pictures/Wallpapers/brenibba.jpg
@@ -221,7 +225,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id /usr/bin/dunst
 
 # Picom
-exec_always --no-startup-id picom
+# exec_always --no-startup-id picom
 
 # wallpaper
 exec --no-startup-id feh --bg-scale Pictures/Wallpapers/blue-minimalist-deer-and-mountain-2mpm3oxulby8w23a.jpg
