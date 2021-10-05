@@ -1,5 +1,5 @@
 # Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
+#Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
 # Copyright (c) 2012-2014 Tycho Andersen
 # Copyright (c) 2012 Craig Barnes
@@ -40,8 +40,16 @@ terminal = "kitty"
 
 @hook.subscribe.startup
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([home])
+    execute_always = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([execute_always])
+
+
+@hook.subscribe.startup_once
+def autostart():
+    execute_once = os.path.expanduser('~/.config/qtile/autostart_once.sh')
+    subprocess.call([execute_once])
+
+
 
 keys = [
     # Switch between windows
@@ -103,6 +111,8 @@ keys = [
 
     # Switch keyboard layout (lang)
     Key([mod], "p", lazy.spawn("xkblayout-state set +1")),
+
+    Key([mod], "Escape", lazy.spawn("multilockscreen --lock")),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -123,14 +133,25 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
+    layout.Columns(
+        border_focus_stack=['#d75f5f', '#8f3d3d'], 
+        border_width=4, 
+        margin=5),
+#    Plasma(
+#        border_normal='#333333',
+#        border_focus='#00e891',
+#        border_normal_fixed='#006863',
+#        border_focus_fixed='#00e8dc',
+#        border_width=1,
+#        border_width_single=0,
+#        margin=0
+#    ),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
     # layout.MonadWide(),
+    # layout.MonadTall(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),

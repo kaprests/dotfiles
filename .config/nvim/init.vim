@@ -12,8 +12,8 @@ set tabstop=4 " tabs as 4 spaces "
 set shiftwidth=4
 set expandtab
 
-autocmd BufNewFile,BufRead *.f90 set tabstop=2
-autocmd BufNewFile,BufRead *.f90 set shiftwidth=2
+autocmd BufNewFile,BufRead *.f90 set tabstop=3
+autocmd BufNewFile,BufRead *.f90 set shiftwidth=3
 
 autocmd BufNewFile,BufRead *.tex set spell
 set spelllang=en_us
@@ -32,16 +32,20 @@ call plug#begin(stdpath('data') . '/plugged')
 
     Plug 'honza/vim-snippets'
 
-"    Plug 'lervag/vimtex'
-"        let g:tex_flavor='latex'
-"        let g:vimtex_view_method='zathura'
-"        let g:vimtex_quickfix_mode=0
-"        autocmd filetype tex highlight MatchParen ctermbg=8
+    Plug 'lervag/vimtex'
+        let g:tex_flavor='latex'
+        let g:vimtex_view_method='zathura'
+        let g:vimtex_quickfix_mode=0
+        autocmd filetype tex highlight MatchParen ctermbg=8
 
     Plug 'KeitaNakamura/tex-conceal.vim'
         set conceallevel=1
         let g:tex_conceal='abdmg'
         hi Conceal ctermbg=none
+
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+"    Plug 'ludovicchabant/vim-gutentags'
 
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

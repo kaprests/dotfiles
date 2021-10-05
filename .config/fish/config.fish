@@ -1,6 +1,6 @@
 # Aliases
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias vim='nvim'
+#alias vim='nvim'
 
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin
 set fish_greeting                       # Supresses fish intro message

@@ -8,4 +8,11 @@ set expandtab
 set hlsearch " highlight search matches "
 set wildmenu " command suggestion upon tab "
 
-Plug 'lervag/vimtex'
+call plug#begin()
+    Plug 'lervag/vimtex'
+        let g:tex_flavor = "latex"
+        let g:tex_fast = "cmMprs"
+        let g:tex_conceal = ""
+        let g:tex_fold_enabled = 0
+        let g:tex_nospell = 1
+call plug#end()

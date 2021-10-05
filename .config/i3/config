@@ -34,7 +34,6 @@ bindsym $mod+Return exec --no-startup-id kitty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-
 # launcher - rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -222,5 +221,5 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+b exec --no-startup-id /home/kaprests/.config/Scripts/System/battery.sh
 
 # xrandr
-#bindsym $mod+Ctrl+s xrandr --output eDP1 --auto --output DP1 --auto --output DP1 --right-of eDP1 --output DP1 --primary
+bindsym $mod+Shift+s exec xrandr --output eDP1 --auto --output DP1 --auto --output DP1 --right-of eDP1 --output DP1 --primary
 #bindsym $mod+Ctrl+s xrandr --output eDP1 --auto
