@@ -7,6 +7,7 @@ set wildmenu " command suggestion upon tab "
 set autoindent
 set smartindent
 set nocindent
+nnoremap <NL> i<CR><ESC>
 
 set tabstop=4 " tabs as 4 spaces "
 set shiftwidth=4

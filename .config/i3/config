@@ -189,7 +189,8 @@ exec --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id picom
 
 # wallpaper
-exec --no-startup-id feh --bg-scale Pictures/Wallpapers/blue-minimalist-deer-and-mountain-2mpm3oxulby8w23a.jpg
+#exec_always --no-startup-id feh --bg-scale Pictures/Wallpapers/blue-minimalist-deer-and-mountain-2mpm3oxulby8w23a.jpg
+exec_always --no-startup-id feh --bg-scale Pictures/Wallpapers/your-name-stars-and-sky-bcxgzaqjzc9wbloq.jpg
 # natural scrolling
 #exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
 
