@@ -20,6 +20,19 @@ autocmd BufNewFile,BufRead *.tex set spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+" vim-yoink maps
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+" Also replace the default gp with yoink paste so we can toggle paste in this case too
+nmap gp <plug>(YoinkPaste_gp)
+nmap gP <plug>(YoinkPaste_gP)
+
+:let g:yoinkIncludeDeleteOperations = 1
+
 " Plugins List
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'sirver/ultisnips'
@@ -46,6 +59,9 @@ call plug#begin(stdpath('data') . '/plugged')
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+    Plug 'svermeulen/vim-yoink'
+    Plug 'svermeulen/vim-cutlass'
+
 "    Plug 'ludovicchabant/vim-gutentags'
 
     if has('nvim')
@@ -56,5 +72,4 @@ call plug#begin(stdpath('data') . '/plugged')
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
         let g:deoplete#enable_at_startup = 1
-
 call plug#end()
