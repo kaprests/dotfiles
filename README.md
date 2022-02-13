@@ -13,5 +13,8 @@ My dotfiles
 * checkout the content from repo to $HOME: 
 
     `dotfiles checkout`
+    
+* Hide undtracked files
+    `dotfiles config --local status.showUntrackedFiles no`
 
 Based on [this article](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b) at medium.com.
