@@ -197,11 +197,10 @@ exec_always --no-startup-id feh --bg-scale Pictures/Wallpers/MacBook-Pro-2021-ad
 #exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
 
 # Switch keyboard layout (lang)
-exec_always --no-startup-id setxkbmap -layout us,no
+exec_always --no-startup-id setxkbmap -layout us,no -option "ctrl:swapcaps"
 bindsym $mod+p exec --no-startup-id xkblayout-state set +1
 
 # Swap ctrl and caps
-exec_always --no-startup-id /usr/bin/setxkbmap -option "ctrl:swapcaps"
 bindsym $mod+c exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:swapcaps"
 
 # Move workspace between monitors
