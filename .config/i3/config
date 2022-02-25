@@ -192,7 +192,7 @@ exec --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id picom 
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale Pictures/Wallpapers/arcane-bridge-day1.jpg
+exec_always --no-startup-id feh --bg-scale Pictures/Wallpers/MacBook-Pro-2021-advertising-macOS-Monterey-wallpaper-Chroma-Red-Dark-optimized.jpg
 # natural scrolling
 #exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
 

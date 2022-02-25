@@ -13,25 +13,9 @@ set tabstop=4 " tabs as 4 spaces "
 set shiftwidth=4
 set expandtab
 
-autocmd BufNewFile,BufRead *.f90 set tabstop=3
-autocmd BufNewFile,BufRead *.f90 set shiftwidth=3
-
 autocmd BufNewFile,BufRead *.tex set spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-
-" vim-yoink maps
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
-" Also replace the default gp with yoink paste so we can toggle paste in this case too
-nmap gp <plug>(YoinkPaste_gp)
-nmap gP <plug>(YoinkPaste_gP)
-
-:let g:yoinkIncludeDeleteOperations = 1
 
 " Plugins List
 call plug#begin(stdpath('data') . '/plugged')
@@ -58,9 +42,6 @@ call plug#begin(stdpath('data') . '/plugged')
         hi Conceal ctermbg=none
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-    Plug 'svermeulen/vim-yoink'
-    Plug 'svermeulen/vim-cutlass'
 
 "    Plug 'ludovicchabant/vim-gutentags'
 
