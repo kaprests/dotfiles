@@ -163,7 +163,7 @@ bindsym $mod+r mode "resize"
 
 # Borders and gaps
 for_window [class="^.*"] border pixel 0
-gaps inner 15
+gaps inner 10
 gaps outer 0
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
@@ -210,6 +210,9 @@ bindsym $mod+Ctrl+l move workspace to output right
 # backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
+
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id xbacklight -inc 10 # increase screen brightness
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id xbacklight -dec 10 # decrease screen brightness
 
 bindsym $mod+n exec --no-startup-id xbacklight -inc 1 # increase screen brightness
 bindsym $mod+m exec --no-startup-id xbacklight -dec 1 # decrease screen brightness
