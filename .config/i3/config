@@ -193,7 +193,7 @@ exec --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id picom 
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale Pictures/Wallpapers/digital_wave.jpg
+exec_always --no-startup-id feh --bg-scale Pictures/Wallpapers/midnight-train-2560×1440.jpg
 # natural scrolling
 #exec --no-startup-id $HOME/.config/i3/natural_scrolling.sh
 
