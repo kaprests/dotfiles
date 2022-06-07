@@ -1,4 +1,5 @@
 syntax on
+filetype plugin indent on
 set number " show line number "
 set ignorecase " case insensitive search "
 set pastetoggle=<f10>
@@ -34,6 +35,7 @@ call plug#begin(stdpath('data') . '/plugged')
         let g:tex_flavor='latex'
         let g:vimtex_view_method='zathura'
         let g:vimtex_quickfix_mode=0
+        let g:vimtex_view_forward_search_on_start = 1
         autocmd filetype tex highlight MatchParen ctermbg=8
 
     Plug 'KeitaNakamura/tex-conceal.vim'
