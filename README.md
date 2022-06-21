@@ -18,4 +18,7 @@ My dotfiles
 
     `dotfiles config --local status.showUntrackedFiles no`
 
+* Copy `.config/userChrome.css` to Firefix profile directory
+    Have not yet worked out a simple way to automate this. 
+
 Based on [this article](https://medium.com/toutsbrasil/how-to-manage-your-dotfiles-with-git-f7aeed8adf8b) at medium.com.
