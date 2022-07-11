@@ -33,7 +33,8 @@ call plug#begin(stdpath('data') . '/plugged')
 
     Plug 'lervag/vimtex'
         let g:tex_flavor='latex'
-        let g:vimtex_view_method='zathura'
+        let g:latex_view_general_viewer = 'zathura'
+        let g:vimtex_view_method = 'zathura'
         let g:vimtex_quickfix_mode=0
         let g:vimtex_view_forward_search_on_start = 1
         autocmd filetype tex highlight MatchParen ctermbg=8

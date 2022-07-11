@@ -168,10 +168,10 @@ gaps outer 0
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
 
-# Borders on focused window, alternative to defocus blur from compositor
+# Decorators
 # class                 border  backgr. text    indicator child_border
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.focused          #053365 #063970 #ffffff #2e9ef4   #285577
+client.unfocused        #222222 #111111 #888888 #292d2e   #222222
 
 # Border radius (rounded corners)
 # border_radius 10
