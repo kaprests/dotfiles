@@ -10,6 +10,7 @@ fish_vi_key_bindings                    # vi mode
 
 # Path
 fish_add_path $HOME/.emacs.d/bin
+fish_add_path $HOME/.config/scripts
 
 function fish_user_key_bindings
     switch $TERM
