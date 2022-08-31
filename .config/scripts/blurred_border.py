@@ -43,6 +43,7 @@ def main():
             image = Image.open(arg)
         except OSError:
             print(f"Warning: file {arg} not found. Skipping {arg}")
+            break
         name, extension = arg.split(".")
         result = blurred_border_resize(image, target_aspect)
 
