@@ -1,0 +1,84 @@
+# open terminal, blazingly fast compared to iTerm/Hyper
+alt - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+# open qutebrowser
+alt + shift - return : ~/Scripts/qtb.sh
+
+# open mpv
+alt - m : open -na /Applications/mpv.app $(pbpaste)
+
+# close focused window
+alt + shift - q : yabai -m window --close
+
+# focus window hjkl
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# focus window arrows
+alt - left : yabai -m window --focus west
+alt - down : yabai -m window --focus south
+alt - up : yabai -m window --focus north
+alt - right : yabai -m window --focus east
+
+# Move/Swap windows - hjkl
+alt + shift - h : yabai -m window --swap west
+alt + shift - j : yabai -m window --swap south
+alt + shift - k : yabai -m window --swap north
+alt + shift - l : yabai -m window --swap east
+
+# Move/Swap windows - arrows
+alt + shift - h : yabai -m window --swap west
+alt + shift - j : yabai -m window --swap south
+alt + shift - k : yabai -m window --swap north
+alt + shift - l : yabai -m window --swap east
+
+# set insertion point in focused container - hjkl
+alt + ctrl - h : yabai -m window --insert west
+alt + ctrl - j : yabai -m window --insert south
+alt + ctrl - k : yabai -m window --insert north
+alt + ctrl - l : yabai -m window --insert east
+
+# set insertion point in focused container - arrows
+alt + ctrl - left  : yabai -m window --insert west
+alt + ctrl - down  : yabai -m window --insert south
+alt + ctrl - up    : yabai -m window --insert north
+alt + ctrl - right : yabai -m window --insert east
+
+# move focused window to next/prev workspace
+alt + shift - 1 : yabai -m window --space 1
+alt + shift - 2 : yabai -m window --space 2
+alt + shift - 3 : yabai -m window --space 3
+alt + shift - 4 : yabai -m window --space 4
+alt + shift - 5 : yabai -m window --space 5
+alt + shift - 6 : yabai -m window --space 6
+alt + shift - 7 : yabai -m window --space 7
+alt + shift - 8 : yabai -m window --space 8
+alt + shift - 9 : yabai -m window --space 9
+
+# # mirror tree y-axis
+alt + shift - y : yabai -m space --mirror y-axis
+
+# # mirror tree x-axis
+alt + shift - x : yabai -m space --mirror x-axis
+
+# balance size of windows
+alt + shift - 0 : yabai -m space --balance
+
+# change layout of desktop
+alt - e : yabai -m space --layout bsp
+alt - space : yabai -m space --layout float
+alt - s : yabai -m space --layout stack
+
+# cycle through stack windows
+alt - p : yabai -m window --focus stack.next || yabai -m window --focus south
+alt - n : yabai -m window --focus stack.prev || yabai -m window --focus north
+
+# enter fullscreen mode for the focused container
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# Missing/wanted functionality:
+# - swap between workspaces with keybinding
+# - resize windows with keybinding
+# - non-fullscreen stacks

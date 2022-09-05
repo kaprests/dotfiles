@@ -12,6 +12,10 @@ fish_vi_key_bindings                    # vi mode
 fish_add_path $HOME/.emacs.d/bin
 fish_add_path $HOME/.config/scripts
 
+# Path (macos) -- consider some clever logic
+fish_add_path /opt/homebrew/bin/fish
+fish_add_path /opt/homebrew/bin/brew
+
 function fish_user_key_bindings
     switch $TERM
         case rxvt-unicode-256color
