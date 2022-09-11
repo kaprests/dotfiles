@@ -55,8 +55,8 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
 
 /* Rules specific to window controls on right layout */
 @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled"){
-  .titlebar-buttonbox-container{ position: fixed; display: block; left: 0px; z-index: 3; }
-  :root[tabsintitlebar="true"] #nav-bar{ padding-left: 96px !important; padding-right: 0px !important; }
+  .titlebar-buttonbox-container{ display: none }
+  :root[tabsintitlebar="true"] #nav-bar{ padding-left: 0px !important; padding-right: 0px !important; }
 }
 
 /* 1px margin on touch density causes tabs to be too high */
