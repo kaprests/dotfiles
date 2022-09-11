@@ -8,15 +8,15 @@ My dotfiles
 
 * set dotfiles alias: 
 
-    `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`
+    `alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`
 
 * checkout the content from repo to $HOME: 
 
-    `dotfiles checkout`
+    `dots checkout`
     
 * Hide undtracked files
 
-    `dotfiles config --local status.showUntrackedFiles no`
+    `dots config --local status.showUntrackedFiles no`
 
 * Copy `.config/userChrome.css` to Firefix profile directory
     Have not yet worked out a simple way to automate this. 
