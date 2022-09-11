@@ -57,3 +57,8 @@ call plug#begin(stdpath('data') . '/plugged')
     endif
         let g:deoplete#enable_at_startup = 1
 call plug#end()
+
+
+" Fix no deoplete: :UpdateRemotePlugins
+" Fix no python3 provider: python3 -m pip install --user --upgrade pynvim
+"   Alternatively try: pacman -S pynvim or for mac: brew install pynvim
