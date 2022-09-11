@@ -84,6 +84,11 @@ alt + ctrl - 2 : yabai -m space --display 2
 alt + ctrl - 3 : yabai -m space --display 3
 
 # Missing/wanted functionality:
-# - swap between workspaces with keybinding
+# - swap between workspaces with keybinding 
+#       SOL: can be done through macos
 # - resize windows with keybinding
 # - non-fullscreen stacks
+# Workspace management across multiple monitors
+#   Want to swap entire workspaces between monitors
+#   Also currently new windows always open on the primary display
+#   and not inside the current workspace -- super annoying
