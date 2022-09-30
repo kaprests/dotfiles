@@ -1,6 +1,10 @@
 # Aliases
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vim='nvim'
+switch (uname)
+    case Darwin
+        alias python='python3'
+end
 
 # Basic config
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin
@@ -11,7 +15,6 @@ fish_vi_key_bindings                    # vi mode
 # Path -- universal
 fish_add_path $HOME/.emacs.d/bin
 fish_add_path $HOME/.config/scripts
-
 switch (uname)
     # macos
     case Darwin
