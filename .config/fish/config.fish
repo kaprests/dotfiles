@@ -20,6 +20,8 @@ switch (uname)
     case Darwin
         fish_add_path /opt/homebrew/bin/fish
         fish_add_path /opt/homebrew/bin/brew
+        fish_add_path /opt/homebrew/opt/curl/bin
+        fish_add_path /Users/kaprests/.cargo/bin
 end
 
 function fish_user_key_bindings
@@ -30,3 +32,5 @@ function fish_user_key_bindings
             bind --preset -M insert \b backward-kill-path-component
     end
 end
+
+pyenv init - | source
