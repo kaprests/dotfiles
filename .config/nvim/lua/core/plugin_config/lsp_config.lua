@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "tsserver" },
+  ensure_installed = { "lua_ls", "pyright", "tsserver" },
 }
 
 local on_attach = function(_, _) 
@@ -23,7 +23,14 @@ require("lspconfig").lua_ls.setup {
     },
   },
 }
-require("lspconfig").rust_analyzer.setup {on_attach = on_attach}
+require("lspconfig").rust_analyzer.setup {
+  on_attach = on_attach,
+  cmd = {
+    -- Use rust-analyzer installed with rustup instead
+    -- of installing with mason-lspconfig
+    'rustup', 'run', 'stable', 'rust-analyzer',
+  }
+}
 require("lspconfig").pyright.setup {on_attach = on_attach}
 require("lspconfig").tsserver.setup {on_attach = on_attach}
 
