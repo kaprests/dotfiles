@@ -3,7 +3,7 @@
 # import os
 import sys
 from PIL import Image, ImageFilter, ImageEnhance
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 def blurred_border_resize(inner_image, target_aspect, blur_radius=200, brightness=0.8): 

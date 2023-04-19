@@ -20,3 +20,4 @@ vim.opt.expandtab = true
 
 -- Fix bad default color of telescope
 vim.api.nvim_set_hl(0, 'NormalFloat', {link = 'Normal'})
+
