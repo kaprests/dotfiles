@@ -9,6 +9,7 @@ require("core.plugin_config")
 -- vim.opt.cursorline = true
 -- vim.opt.autoread = true
 
+-- Default settings, may be overridden by ftplugins
 vim.opt.number = true
 vim.opt.ignorecase = true
 vim.opt.wildmenu = true
