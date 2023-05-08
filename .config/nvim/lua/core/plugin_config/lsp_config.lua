@@ -9,7 +9,7 @@ vim.diagnostic.config({
 
 -- Show all diagnostics on current line in floating window
 vim.api.nvim_set_keymap(
-  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>', 
+  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
   { noremap = true, silent = true }
 )
 -- Go to next diagnostic (if there are multiple on the same line, only shows
@@ -25,7 +25,7 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
-local on_attach = function(_, _) 
+local on_attach = function(_, _)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
 
@@ -40,7 +40,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require("lspconfig").lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  settinga = {
+  settings = {
     Lua = {
       diagnostics = {
         globals = {'vim'},
@@ -58,7 +58,15 @@ require("lspconfig").rust_analyzer.setup {
   }
 }
 require("lspconfig").pyright.setup {
-  on_attach = on_attach,
+  on_attach = (
+    function()
+      on_attach()
+      vim.keymap.set("n", "<Leader>ii", "<cmd>PyrightOrganizeImports<CR>", {
+        silent = true,
+        noremap = true,
+      })
+    end
+  ),
   capabilities = capabilities,
   analysis = {
     typeCheckingMode = "off",
