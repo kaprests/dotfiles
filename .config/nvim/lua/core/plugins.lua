@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-context'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
@@ -40,9 +41,9 @@ return require('packer').startup(function(use)
       "williamboman/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
   }
-
+  use 'stevearc/oil.nvim'
   -- Start copilot with `:Copilot setup`
-  use {'github/copilot.vim', branch = 'release' }
+  --use {'github/copilot.vim', branch = 'release' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
