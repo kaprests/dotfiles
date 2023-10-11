@@ -9,6 +9,7 @@ require('nvim-treesitter.configs').setup {
     "vim",
     "javascript",
     "fortran",
+    "sql",
   },
 
   -- Install parsers synchronously (only applied to 'ensure_installed')
