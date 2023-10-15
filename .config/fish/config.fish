@@ -1,6 +1,7 @@
 # Aliases
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vim='nvim'
+thefuck --alias | source
 switch (uname)
     case Darwin
         alias python='python3'
