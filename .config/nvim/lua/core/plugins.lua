@@ -15,6 +15,7 @@ vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    colorscheme "one_monokai"
   augroup end
 ]])
 
@@ -23,7 +24,14 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+        ts_update()
+    end,
+  }
+  use "cpea2506/one_monokai.nvim"
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'

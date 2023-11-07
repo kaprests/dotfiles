@@ -7,9 +7,20 @@ require('nvim-treesitter.configs').setup {
     "ruby",
     "python",
     "vim",
-    "javascript",
     "fortran",
     "sql",
+    "javascript",
+    "typescript",
+    "tsx",
+    "html",
+    "json",
+    "yaml",
+    "css",
+    "markdown",
+    "bash",
+    "fish",
+    "dockerfile",
+    "gitignore",
   },
 
   -- Install parsers synchronously (only applied to 'ensure_installed')
@@ -18,4 +29,16 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
   },
+  indent = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<C-space>", -- ctrl space
+      node_incremental = "<C-space>",
+      scope_incremental = false,
+      node_decremental = "<bs>", -- backspace
+    }
+  }
 }
