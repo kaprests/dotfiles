@@ -1,6 +1,23 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-  ensure_installed = { "lua_ls", "pyright", "tsserver", "fortls" },
+  ensure_installed = {
+    "lua_ls",
+    "pyright",
+    "tsserver",
+    "fortls",
+    --"csharp_ls",
+    -- "omnisharp-mono",
+    "omnisharp",
+    "dockerls",
+    "eslint",
+    "html",
+    "cssls",
+    "bashls",
+    "jsonls",
+    "sqlls",
+    "yamlls",
+    "tflint",
+  },
 }
 
 vim.diagnostic.config({
@@ -85,4 +102,54 @@ require("lspconfig").tsserver.setup {
 require("lspconfig").fortls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+}
+
+require("lspconfig").omnisharp.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").dockerls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").eslint.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").html.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").cssls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").bashls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").jsonls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").sqlls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").yamlls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
+}
+
+require("lspconfig").tflint.setup {
+  on_attach = on_attach,
+  capabilities=capabilities,
 }
