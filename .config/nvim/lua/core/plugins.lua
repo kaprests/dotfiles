@@ -56,13 +56,22 @@ return require('packer').startup(function(use)
   use 'tpope/vim-dadbod'
   use 'kristijanhusak/vim-dadbod-ui'
   use 'kristijanhusak/vim-dadbod-completion'
+  use 'ThePrimeagen/vim-be-good'
   -- Start copilot with `:Copilot setup`
   --use {'github/copilot.vim', branch = 'release' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
+  --
+  ---- nvim v0.7.2
+  use({
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
-

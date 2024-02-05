@@ -1,11 +1,17 @@
 # Aliases
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vim='nvim'
+alias ff='cd (fd --type directory | fzf)'
 thefuck --alias | source
-switch (uname)
-    case Darwin
-        alias python='python3'
-end
+#switch (uname)
+#    case Darwin
+#        alias python='python3'
+#end
+
+# Opt out of MS/dotnet telemetry shait
+# TODO: Consider separating out work related stuff (i.a. MacOS and MS stuff)
+set FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT true
+set DOTNET_HTTPREPL_TELEMETRY_OPTOUT true
 
 # Basic config
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin
@@ -16,6 +22,7 @@ fish_vi_key_bindings                    # vi mode
 # Path -- universal
 fish_add_path $HOME/.emacs.d/bin
 fish_add_path $HOME/.config/scripts
+fish_add_path $HOME/.dotnet/tools
 switch (uname)
     # macos
     case Darwin
