@@ -54,6 +54,7 @@ return require('packer').startup(function(use)
   use 'stevearc/oil.nvim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-dadbod'
+  use 'tpope/vim-abolish'
   use 'kristijanhusak/vim-dadbod-ui'
   use 'kristijanhusak/vim-dadbod-completion'
   use 'ThePrimeagen/vim-be-good'
