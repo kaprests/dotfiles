@@ -44,3 +44,6 @@ function fish_user_key_bindings
 end
 
 pyenv init - | source
+
+# forgit
+[ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish ]; and source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish
