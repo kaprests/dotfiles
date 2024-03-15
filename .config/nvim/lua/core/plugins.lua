@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
   use 'kristijanhusak/vim-dadbod-ui'
   use 'kristijanhusak/vim-dadbod-completion'
   use 'ThePrimeagen/vim-be-good'
+  use 'ThePrimeagen/git-worktree.nvim'
   -- Start copilot with `:Copilot setup`
   --use {'github/copilot.vim', branch = 'release' }
 
