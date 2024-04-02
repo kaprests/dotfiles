@@ -38,8 +38,12 @@ function fish_user_key_bindings
     switch $TERM
         case rxvt-unicode-256color
             bind --preset -M insert \cH backward-kill-path-component # Not tested this case
+            # clear commandline with ctrl+n
+            bind --preset -M insert \cn clear-screen
         case xterm-256color
             bind --preset -M insert \b backward-kill-path-component
+            # clear commandline with ctrl+n
+            bind --preset -M insert \cn clear-screen
     end
 end
 
