@@ -3,7 +3,8 @@ require("mason-lspconfig").setup {
   ensure_installed = {
     "lua_ls",
     "pyright",
-    "tsserver",
+    --"tsserver",
+    "ts_ls",
     "fortls",
     --"csharp_ls",
     -- "omnisharp-mono",

@@ -22,7 +22,7 @@ vim.opt.shiftwidth = 4
 vim.opt.relativenumber = true
 -- vim.opt.shiftround = true
 vim.opt.expandtab = true
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 -- Fix bad default color of telescope
 vim.api.nvim_set_hl(0, 'NormalFloat', {link = 'Normal'})
