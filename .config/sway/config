@@ -1,4 +1,5 @@
-### i3wm config ###
+### Sway config ###
+# https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway
 
 # modifier = Alt
 set $mod Mod1
@@ -12,6 +13,7 @@ font pango:monospace 8
 
 # lock screen
 set $lock_screen exec swaylock \
+    -f \
     --screenshots \
     --clock \
     --indicator \
@@ -26,18 +28,48 @@ set $lock_screen exec swaylock \
     --separator-color 00000000 \
     --grace 2 \
     --fade-in 0.2
+set $lock_screen_no_grace_or_fade exec swaylock \
+    -f \
+    --screenshots \
+    --clock \
+    --indicator \
+    --indicator-radius 100 \
+    --indicator-thickness 7 \
+    --effect-blur 10x7 \
+    --effect-vignette 0.5:0.5 \
+    --ring-color bb00cc \
+    --key-hl-color 880033 \
+    --line-color 00000000 \
+    --inside-color 00000088 \
+    --separator-color 00000000
+
 bindsym $mod+Escape exec $lock_screen
 
 # suspend 
-bindsym $mod+Shift+Escape exec --no-startup-id systemctl suspend
+bindsym $mod+Shift+Escape exec --no-startup-id \
+    swaylock \
+    -f \
+    --screenshots \
+    --clock \
+    --indicator \
+    --indicator-radius 100 \
+    --indicator-thickness 7 \
+    --effect-blur 10x7 \
+    --effect-vignette 0.5:0.5 \
+    --ring-color bb00cc \
+    --key-hl-color 880033 \
+    --line-color 00000000 \
+    --inside-color 00000088 \
+    --separator-color 00000000 \
+    && systemctl suspend
 
 ### Idle configuration
 #
 # Example configuration:
- exec swayidle -w \
-          timeout 300 $lock_screen \
-          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep $lock_screen
+exec_always swayidle -w \
+    timeout 300 '$lock_screen' \
+    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    before-sleep '$lock_screen_no_grace_or_fade'
 
 input type:keyboard {
   # Capslock key should work as escape key
@@ -105,16 +137,16 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $mod+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+s split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+Shift+w layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -255,6 +287,8 @@ bindsym $mod+Ctrl+l move workspace to output right
 # backlight
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym --locked Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
