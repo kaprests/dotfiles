@@ -3,6 +3,7 @@ alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vim='nvim'
 alias ff='cd (fd --type directory | fzf)'
 thefuck --alias | source
+alias ls='eza'
 #switch (uname)
 #    case Darwin
 #        alias python='python3'
@@ -19,6 +20,7 @@ set DOTNET_CLI_TELEMETRY_OPTOUT true
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin
 set fish_greeting                       # Supresses fish intro message
 set TERM "xterm-256color"               # Sets the terminal type
+set -Ux SUDO_EDITOR nvim
 fish_vi_key_bindings                    # vi mode
 
 # Path -- universal
@@ -51,3 +53,9 @@ pyenv init - | source
 
 # forgit
 [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish ]; and source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish
+
+# plugins (look for better setup)
+# Install: fisher 
+# then
+# fisher install jhillyerd/plugin-git
+# (https://github.com/jhillyerd/plugin-git)
