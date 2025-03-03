@@ -67,8 +67,8 @@ bindsym $mod+Shift+Escape exec --no-startup-id \
 #
 # Example configuration:
 exec_always swayidle -w \
-    timeout 30000 '$lock_screen' \
-    timeout 60000 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 300 '$lock_screen' \
+    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep '$lock_screen_no_grace_or_fade'
 
 # TODO: Configure swapcaps for built in keyboard, but not for i.a. splitkeyboard
