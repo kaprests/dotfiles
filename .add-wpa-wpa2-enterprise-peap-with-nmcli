@@ -1,0 +1,16 @@
+# Check that NetworkManager is activated and running
+
+# Add connection:
+nmcli connection add type wifi ifname wlan0 con-name <WIFI-SSID> ssid <WIFI-SSID>
+
+# Edit connection:
+nmcli connection edit <WIFI-SSID>
+>set 802-1x.eap peap
+>set 802-1x.phase2-auth mschapv2
+>set 802-1x.identity yourUsername
+>set 802-1x.password yourPassword
+>set wifi-sec.key-mgmt wpa-eap
+>save
+>activate
+
+ctrl-d to exit nmcli
