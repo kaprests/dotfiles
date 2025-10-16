@@ -87,6 +87,7 @@ return require('packer').startup(function(use)
 --          vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 --      end
 --  }
+  use 'itchyny/vim-qfedit' -- Edit quickfix list freely
   if packer_bootstrap then
     require('packer').sync()
   end
