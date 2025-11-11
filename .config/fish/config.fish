@@ -23,9 +23,9 @@ set TERM "xterm-256color"               # Sets the terminal type
 set -Ux SUDO_EDITOR nvim
 fish_vi_key_bindings                    # vi mode
 
-# Lazydocker
-#set -gx DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
-#alias docker='podman'
+# Podman Docker compatibility (LazyDocker, Testcontainers)
+set -x DOCKER_HOST unix://(podman info --format '{{.Host.RemoteSocket.Path}}')
+set -x DOCKER_API_VERSION 1.40
 
 # Path -- universal
 fish_add_path $HOME/.emacs.d/bin
