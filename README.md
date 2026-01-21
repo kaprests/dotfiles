@@ -25,3 +25,13 @@ My dotfiles
 ![Empty-desktop](./Pictures/dotshots/empty-desktop.png)
 ![Terminals](./Pictures/dotshots/terminals.png)
 ![Firefox](./Pictures/dotshots/firefox.png)
+
+Note:
+Export list of explicitly installed stuff (pacman):
+
+Everything from pacman, excluding i.a. AUR stuff
+pacman -Qqe | grep -Fvx "$(pacman -Qqm)"
+
+AUR stuff (and other foreign things):
+pacman -Qqme
+
