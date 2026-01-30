@@ -13,6 +13,7 @@ font pango:monospace 8
 
 # Wallpaper path
 set $wallpaper_path ~/Pictures/Wallpapers/polyrocket.jpg
+#set $wallpaper_path ~/Pictures/Wallpapers/7687366.jpg
 
 # lock screen
 set $lock_screen exec hyprlock 
@@ -49,11 +50,9 @@ set $lock_screen_no_grace_or_fade exec hyprlock
 bindsym $mod+Escape exec $lock_screen
 
 ### Idle configuration
-# TODO 
-## suspend TODO: Need hypridle I think
-#bindsym $mod+Shift+Escape exec --no-startup-id hyprlock && systemctl suspend
+bindsym $mod+Shift+Escape exec --no-startup-id systemctl suspend
 # s2idle, suspend, hibernate
-#exec hypridle
+exec hypridle
 
 # TODO: Configure swapcaps for built in keyboard, but not for i.a. splitkeyboard
 # TODO: Setup norwegian kb option, and make the toggling work again
@@ -100,7 +99,9 @@ bindsym $mod+Return exec --no-startup-id kitty
 bindsym $mod+Shift+q kill
 
 # launcher - rofi
-bindsym $mod+d exec --no-startup-id rofi -show drun
+set $menu --no-startup-id rofi -show drun
+bindsym $mod+d exec $menu
+bindsym --release Super_L exec $menu
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id dmenu_run
 
