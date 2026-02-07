@@ -1,6 +1,7 @@
 #!/bin/bash
 
-BAT=$(acpi -b | grep -E -o '[0-9][0-9][0-9]?%')
+#BAT=$(acpi -b | grep -E -o '[0-9][0-9][0-9]?%')
+BAT=$(cat /sys/class/power_supply/BAT1/capacity)
 
 # Full and short texts
 echo "Battery: $BAT"

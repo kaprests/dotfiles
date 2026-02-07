@@ -2,7 +2,7 @@
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vim='nvim'
 alias ff='cd (fd --type directory | fzf)'
-thefuck --alias | source
+#thefuck --alias | source
 alias ls='eza'
 #switch (uname)
 #    case Darwin
@@ -24,8 +24,12 @@ set -Ux SUDO_EDITOR nvim
 fish_vi_key_bindings                    # vi mode
 
 # Podman Docker compatibility (LazyDocker, Testcontainers)
-set -x DOCKER_HOST unix://(podman info --format '{{.Host.RemoteSocket.Path}}')
-set -x DOCKER_API_VERSION 1.40
+set -x DOCKER_HOST unix:///run/user/(id -u)/podman/podman.sock
+#set -x DOCKER_HOST unix://(podman info --format '{{.Host.RemoteSocket.Path}}')
+#set -x DOCKER_API_VERSION 1.40
+# Podman compatibility with Docker tools etc.
+# Note: also must enable: systemctl enable --now podman.socket
+# Or run: podman system service --time=0 &
 
 # Path -- universal
 fish_add_path $HOME/.emacs.d/bin
@@ -53,10 +57,9 @@ function fish_user_key_bindings
     end
 end
 
-pyenv init - | source
 
 # forgit
-[ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish ]; and source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish
+#[ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish ]; and source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.fish
 
 # plugins (look for better setup)
 # Install: fisher 
