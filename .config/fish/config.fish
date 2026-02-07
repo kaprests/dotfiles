@@ -21,6 +21,7 @@ set -U fish_user_paths $fish_user_paths $HOME/.local/bin
 set fish_greeting                       # Supresses fish intro message
 set TERM "xterm-256color"               # Sets the terminal type
 set -Ux SUDO_EDITOR nvim
+set -Ux EDITOR nvim
 fish_vi_key_bindings                    # vi mode
 
 # Podman Docker compatibility (LazyDocker, Testcontainers)
