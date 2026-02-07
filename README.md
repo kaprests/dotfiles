@@ -34,4 +34,3 @@ pacman -Qqe | grep -Fvx "$(pacman -Qqm)"
 
 AUR stuff (and other foreign things):
 pacman -Qqme
-
