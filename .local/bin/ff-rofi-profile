@@ -1,0 +1,63 @@
+#!/bin/sh
+
+profiles_ini="${FIREFOX_PROFILES_INI:-$HOME/.mozilla/firefox/profiles.ini}"
+base_dir=$(dirname "$profiles_ini")
+
+if [ ! -r "$profiles_ini" ]; then
+  printf '%s\n' "profiles.ini not found: $profiles_ini" >&2
+  exit 1
+fi
+
+if ! command -v rofi >/dev/null 2>&1; then
+  printf '%s\n' "rofi not found in PATH" >&2
+  exit 1
+fi
+
+firefox_bin=$(command -v firefox 2>/dev/null || true)
+if [ -z "$firefox_bin" ]; then
+  printf '%s\n' "firefox not found in PATH" >&2
+  exit 1
+fi
+
+profiles=$(
+  awk -F '=' '
+    BEGIN { in_profile=0; name=""; path=""; rel="" }
+    /^\[Profile/ {
+      if (in_profile) { print name "\t" path "\t" rel }
+      in_profile=1; name=""; path=""; rel=""; next
+    }
+    /^\[/ { next }
+    in_profile && $1=="Name" { name=$2; next }
+    in_profile && $1=="Path" { path=$2; next }
+    in_profile && $1=="IsRelative" { rel=$2; next }
+    END { if (in_profile) { print name "\t" path "\t" rel } }
+  ' "$profiles_ini"
+)
+
+if [ -z "$profiles" ]; then
+  printf '%s\n' "No profiles found in $profiles_ini" >&2
+  exit 1
+fi
+
+choice=$(printf '%s\n' "$profiles" | awk -F '\t' '{print $1}' | rofi -dmenu -i -p "Firefox profile")
+
+if [ -z "$choice" ]; then
+  exit 0
+fi
+
+selected=$(printf '%s\n' "$profiles" | awk -F '\t' -v sel="$choice" '$1==sel { print $2 "\t" $3; exit }')
+sel_path=$(printf '%s' "$selected" | awk -F '\t' '{print $1}')
+sel_rel=$(printf '%s' "$selected" | awk -F '\t' '{print $2}')
+
+if [ -z "$sel_path" ]; then
+  printf '%s\n' "Profile path not found for selection: $choice" >&2
+  exit 1
+fi
+
+if [ "$sel_rel" = "1" ]; then
+  profile_path="$base_dir/$sel_path"
+else
+  profile_path="$sel_path"
+fi
+
+exec "$firefox_bin" --profile "$profile_path" --no-remote

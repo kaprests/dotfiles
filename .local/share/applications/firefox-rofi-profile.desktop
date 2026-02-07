@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Firefox (Profile Picker)
+Comment=Launch Firefox with a selected profile
+Exec=/home/kaprests/.local/bin/ff-rofi-profile
+Terminal=false
+Categories=Network;WebBrowser;
+StartupWMClass=firefox

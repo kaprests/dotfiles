@@ -100,7 +100,9 @@ bindsym $mod+Shift+q kill
 
 # launcher - rofi
 set $menu --no-startup-id rofi -show drun
+set $menu_combi --no-startup-id rofi -show combi
 bindsym $mod+d exec $menu
+bindsym $mod+shift+d exec $menu_combi
 bindsym --release Super_L exec $menu
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+d exec --no-startup-id dmenu_run
