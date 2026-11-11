@@ -12,35 +12,38 @@ alias ls='eza'
 # Opt out of MS/dotnet telemetry shait
 # Not sure if all of these are needed, but better safe than sorry :')
 # TODO: Consider separating out work related stuff (i.a. MacOS and MS stuff)
-set FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT true
-set DOTNET_HTTPREPL_TELEMETRY_OPTOUT true
-set DOTNET_CLI_TELEMETRY_OPTOUT true
+set -gx FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT true
+set -gx DOTNET_HTTPREPL_TELEMETRY_OPTOUT true
+set -gx DOTNET_CLI_TELEMETRY_OPTOUT true
+
+# Gemini Enterprise Agent Platform (formelry Vertex AI)
+set -gx GOOGLE_CLOUD_PROJECT "applied-ai-106502"
+set -gx VERTEX_LOCATION "global"
 
 # Basic config
-set -U fish_user_paths $fish_user_paths $HOME/.local/bin
 set fish_greeting                       # Supresses fish intro message
 set TERM "xterm-256color"               # Sets the terminal type
-set -Ux SUDO_EDITOR nvim
-set -Ux EDITOR nvim
+set -gx SUDO_EDITOR nvim
+set -gx EDITOR nvim
 fish_vi_key_bindings                    # vi mode
 
 # Podman Docker compatibility (LazyDocker, Testcontainers)
-set -x DOCKER_HOST unix:///run/user/(id -u)/podman/podman.sock
-#set -x DOCKER_HOST unix://(podman info --format '{{.Host.RemoteSocket.Path}}')
-#set -x DOCKER_API_VERSION 1.40
+set -gx DOCKER_HOST unix:///run/user/(id -u)/podman/podman.sock
+#set -gx DOCKER_HOST unix://(podman info --format '{{.Host.RemoteSocket.Path}}')
+#set -gx DOCKER_API_VERSION 1.40
 # Podman compatibility with Docker tools etc.
 # Note: also must enable: systemctl enable --now podman.socket
 # Or run: podman system service --time=0 &
 
 # Path -- universal
+fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.emacs.d/bin
 fish_add_path $HOME/.config/scripts
 fish_add_path $HOME/.dotnet/tools
 switch (uname)
     # macos
     case Darwin
-        fish_add_path /opt/homebrew/bin/fish
-        fish_add_path /opt/homebrew/bin/brew
+        fish_add_path /opt/homebrew/bin/
         fish_add_path /opt/homebrew/opt/curl/bin
         fish_add_path /Users/kaprests/.cargo/bin
 end
@@ -67,3 +70,4 @@ end
 # then
 # fisher install jhillyerd/plugin-git
 # (https://github.com/jhillyerd/plugin-git)
+mise activate fish | source
