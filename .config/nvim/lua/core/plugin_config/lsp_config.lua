@@ -1,13 +1,78 @@
+vim.diagnostic.config({
+  virtual_text = false, -- Turn off inline diagnostics
+})
+
+-- Show all diagnostics on current line in floating window
+vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, { silent = true })
+-- Go to next/prev diagnostic
+vim.keymap.set('n', '<Leader>n', function() vim.diagnostic.jump({ count = 1, float = true }) end, { silent = true })
+vim.keymap.set('n', '<Leader>p', function() vim.diagnostic.jump({ count = -1, float = true }) end, { silent = true })
+
+-- Keymaps for every attached server
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('user_lsp', { clear = true }),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client.name == 'pyright' then
+      vim.keymap.set('n', '<Leader>ii', '<cmd>LspPyrightOrganizeImports<CR>', { buffer = ev.buf, silent = true })
+    end
+  end,
+})
+
+-- Defaults for all servers
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
+
+-- Per-server overrides (merged with nvim-lspconfig's defaults)
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+    },
+  },
+})
+
+vim.lsp.config('rust_analyzer', {
+  -- Use rust-analyzer installed with rustup instead of mason
+  cmd = { 'rustup', 'run', 'stable', 'rust-analyzer' },
+})
+
+vim.lsp.config('pyright', {
+  settings = {
+    python = {
+      analysis = { typeCheckingMode = 'off' },
+    },
+  },
+  -- Use poetry virtualenv if the project has one
+  before_init = function(_, config)
+    local root = config.root_dir
+    if not root then return end
+    local res = vim.system({ 'poetry', 'env', 'info', '-p' }, { cwd = root, text = true }):wait()
+    local env = vim.trim(res.stdout or '')
+    if res.code == 0 and #env > 0 then
+      config.settings.python = config.settings.python or {}
+      config.settings.python.pythonPath = env .. '/bin/python'
+    end
+  end,
+})
+
+-- Mason installs servers; mason-lspconfig auto-enables installed ones
 require("mason").setup()
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "pyright",
-    --"tsserver",
     "ts_ls",
     "fortls",
-    --"csharp_ls",
-    -- "omnisharp-mono",
     "omnisharp",
     "dockerls",
     "eslint",
@@ -19,138 +84,7 @@ require("mason-lspconfig").setup {
     "yamlls",
     "tflint",
   },
-}
-
-vim.diagnostic.config({
-  virtual_text = false, -- Turn off inline diagnostics
 })
 
--- Show all diagnostics on current line in floating window
-vim.api.nvim_set_keymap(
-  'n', '<Leader>d', ':lua vim.diagnostic.open_float()<CR>',
-  { noremap = true, silent = true }
-)
--- Go to next diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>n', ':lua vim.diagnostic.goto_next()<CR>',
-  { noremap = true, silent = true }
-)
--- Go to prev diagnostic (if there are multiple on the same line, only shows
--- one at a time in the floating window)
-vim.api.nvim_set_keymap(
-  'n', '<Leader>p', ':lua vim.diagnostic.goto_prev()<CR>',
-  { noremap = true, silent = true }
-)
-
-local on_attach = function(_, _)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
-  vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-end
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-require("lspconfig").lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {'vim'},
-      },
-    },
-  },
-}
-require("lspconfig").rust_analyzer.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = {
-    -- Use rust-analyzer installed with rustup instead
-    -- of installing with mason-lspconfig
-    'rustup', 'run', 'stable', 'rust-analyzer',
-  }
-}
-require("lspconfig").pyright.setup {
-  on_attach = (
-    function()
-      on_attach()
-      vim.keymap.set("n", "<Leader>ii", "<cmd>PyrightOrganizeImports<CR>", {
-        silent = true,
-        noremap = true,
-      })
-    end
-  ),
-  capabilities = capabilities,
-  analysis = {
-    typeCheckingMode = "off",
-  },
-  on_new_config = function(config, root_dir)
-    local env = vim.trim(vim.fn.system('cd "' .. root_dir .. '"; poetry env info -p 2>/dev/null'))
-    if string.len(env) > 0 then
-      config.settings.python.pythonPath = env .. '/bin/python'
-    end
-  end
-}
-require("lspconfig").ts_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-require("lspconfig").fortls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-require("lspconfig").omnisharp.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").dockerls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").eslint.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").html.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").cssls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").bashls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").jsonls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").sqlls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").yamlls.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
-
-require("lspconfig").tflint.setup {
-  on_attach = on_attach,
-  capabilities=capabilities,
-}
+-- Not installed via mason
+vim.lsp.enable('rust_analyzer')
