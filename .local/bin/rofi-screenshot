@@ -1,0 +1,18 @@
+#!/bin/sh
+dir=$HOME/Pictures/Screenshots
+file=$dir/$(date +%F_%H-%M-%S).png
+mkdir -p "$dir"
+
+choice=$(printf 'Region\nWindow\nScreen\n' | rofi -dmenu -i -p Screenshot) || exit
+sleep 0.2
+
+case $choice in
+    Region) geom=$(slurp) ;;
+    Window) geom=$(swaymsg -t get_tree |
+        jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' |
+        slurp -r) ;;
+    Screen) geom=$(slurp -o) ;;
+    *) exit 1 ;;
+esac || exit
+
+grim -g "$geom" "$file" && wl-copy < "$file" && notify-send -i "$file" Screenshot "$file"

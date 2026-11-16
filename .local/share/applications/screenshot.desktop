@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Screenshot
+Exec=rofi-screenshot
+Icon=camera-photo
